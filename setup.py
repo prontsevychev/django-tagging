@@ -7,12 +7,12 @@ from setuptools import setup
 import tagging
 
 setup(
-    name='django-tagging',
+    name='tendenci-django-tagging',
     version=tagging.__version__,
 
     description='Generic tagging application for Django',
-    long_description='\n'.join([open('README.rst').read(),
-                                open('CHANGELOG.txt').read()]),
+    long_description='\n'.join([open('README.rst').read()]),
+    
     keywords='django, tag, tagging',
 
     author=tagging.__author__,
