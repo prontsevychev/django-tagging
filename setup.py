@@ -7,7 +7,7 @@ from setuptools import setup
 import tagging
 
 setup(
-    name='tendenci-django-tagging',
+    name='django-tagging',
     version=tagging.__version__,
 
     description='Generic tagging application for Django',

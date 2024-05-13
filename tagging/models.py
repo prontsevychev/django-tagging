@@ -3,6 +3,7 @@ Models and managers for tagging.
 """
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import FullResultSet
 from django.db import connection
 from django.db import models
 from django.utils.encoding import smart_str
@@ -175,7 +176,10 @@ class TagManager(models.Manager):
         Passing a value for ``min_count`` implies ``counts=True``.
         """
         compiler = queryset.query.get_compiler(using=queryset.db)
-        where, params = compiler.compile(queryset.query.where)
+        try:
+            where, params = compiler.compile(queryset.query.where)
+        except FullResultSet:
+            where, params = '', []
         extra_joins = ' '.join(compiler.get_from_clause()[0][1:])
 
         if where:
